@@ -10,8 +10,10 @@ cask "macos-app" do
   depends_on macos: :monterey
 
   preflight do
+    pkg_dir = Pathname.glob(staged_path/"**/Package.swift").first.dirname
+
     system_command "/usr/bin/swift",
-                    args: ["build", "-c", "release", "--package-path", staged_path.to_s],
+                    args: ["build", "-c", "release", "--package-path", pkg_dir.to_s],
                     print_stdout: true
 
     app_dir = staged_path/"HelloWorldApp.app"
@@ -19,9 +21,9 @@ cask "macos-app" do
     (app_dir/"Contents/Resources").mkpath
 
     system_command "/bin/cp",
-                    args: [staged_path/".build/release/HelloWorldApp", app_dir/"Contents/MacOS/HelloWorldApp"]
+                    args: [pkg_dir/".build/release/HelloWorldApp", app_dir/"Contents/MacOS/HelloWorldApp"]
     system_command "/bin/cp",
-                    args: [staged_path/"Resources/AppIcon.icns", app_dir/"Contents/Resources/AppIcon.icns"]
+                    args: [pkg_dir/"Resources/AppIcon.icns", app_dir/"Contents/Resources/AppIcon.icns"]
 
     File.write(app_dir/"Contents/Info.plist", <<~PLIST)
       <?xml version="1.0" encoding="UTF-8"?>
