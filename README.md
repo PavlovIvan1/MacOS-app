@@ -16,11 +16,12 @@
 ```bash
 brew tap PavlovIvan1/macos-app https://github.com/PavlovIvan1/MacOS-app.git
 brew trust pavlovivan1/macos-app   # если Homebrew попросит доверять сторонний tap
-brew install macos-app
-macos-app
+brew install --cask macos-app
 ```
 
-Формула собирает бинарник из исходников прямо на вашей машине (`swift build`), поэтому Gatekeeper не блокирует запуск и нотаризация через Apple Developer Program не требуется.
+После установки приложение сразу лежит в `/Applications` и видно в Launchpad/Spotlight — запускается как обычное macOS-приложение, дополнительных шагов не требуется.
+
+Cask собирает бинарник из исходников прямо на вашей машине (`swift build`) во время установки, а не скачивает готовый файл, поэтому Gatekeeper не блокирует запуск и нотаризация через Apple Developer Program не требуется.
 
 ### Из исходников
 

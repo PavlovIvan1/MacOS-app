@@ -1,36 +1,39 @@
 import AppKit
 
+extension NSImage {
+    func tinted(with color: NSColor) -> NSImage {
+        let image = NSImage(size: size)
+        image.lockFocus()
+        color.set()
+        let rect = NSRect(origin: .zero, size: size)
+        rect.fill()
+        draw(in: rect, from: .zero, operation: .destinationIn, fraction: 1.0)
+        image.unlockFocus()
+        return image
+    }
+}
+
 func drawIcon(size: CGFloat) -> NSImage {
     let image = NSImage(size: NSSize(width: size, height: size))
     image.lockFocus()
 
     let rect = NSRect(x: 0, y: 0, width: size, height: size)
     let path = NSBezierPath(roundedRect: rect, xRadius: size * 0.22, yRadius: size * 0.22)
-    let gradient = NSGradient(colors: [
-        NSColor(calibratedRed: 0.36, green: 0.2, blue: 0.85, alpha: 1),
-        NSColor(calibratedRed: 0.95, green: 0.35, blue: 0.55, alpha: 1)
-    ])
-    gradient?.draw(in: path, angle: -45)
+    NSColor(calibratedRed: 0.0, green: 0.48, blue: 1.0, alpha: 1).setFill()
+    path.fill()
 
-    let text = "Hi"
-    let fontSize = size * 0.42
-    let font = NSFont.systemFont(ofSize: fontSize, weight: .heavy)
-    let paragraph = NSMutableParagraphStyle()
-    paragraph.alignment = .center
-    let attrs: [NSAttributedString.Key: Any] = [
-        .font: font,
-        .foregroundColor: NSColor.white,
-        .paragraphStyle: paragraph
-    ]
-    let attrString = NSAttributedString(string: text, attributes: attrs)
-    let textSize = attrString.size()
-    let textRect = NSRect(
-        x: (size - textSize.width) / 2,
-        y: (size - textSize.height) / 2 - size * 0.02,
-        width: textSize.width,
-        height: textSize.height
+    let config = NSImage.SymbolConfiguration(pointSize: size * 0.5, weight: .medium)
+    let symbol = NSImage(systemSymbolName: "hand.wave.fill", accessibilityDescription: nil)!
+        .withSymbolConfiguration(config)!
+    let tinted = symbol.tinted(with: .white)
+    let symbolSize = tinted.size
+    let symbolRect = NSRect(
+        x: (size - symbolSize.width) / 2,
+        y: (size - symbolSize.height) / 2,
+        width: symbolSize.width,
+        height: symbolSize.height
     )
-    attrString.draw(in: textRect)
+    tinted.draw(in: symbolRect)
 
     image.unlockFocus()
     return image
