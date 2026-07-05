@@ -41,6 +41,9 @@ class MacosApp < Formula
       </plist>
     EOS
 
+  end
+
+  def post_install
     system "ln", "-sf", opt_prefix/"HelloWorldApp.app", "/Applications/HelloWorldApp.app"
   end
 
