@@ -1,31 +1,23 @@
 # HelloWorldApp
 
-Простое SwiftUI-приложение для macOS. Окно с текстом «Hello, World!» и кнопкой «Нажми меня», которая переключает текст на «Привет!».
-
-Собирается полностью через Swift Package Manager — без Xcode-проекта.
+A macOS SwiftUI app with a button that switches the label between "Hello, World!" and "Привет!". Built entirely with Swift Package Manager, no Xcode project.
 
 ![Screenshot](screenshots/screenshot.png)
 
-## Требования
+## Requirements
 
 - macOS 12+
 - Xcode Command Line Tools (Swift 5.9+)
 
-## Установка и запуск
-
-### Через Homebrew
+## Install via Homebrew
 
 ```bash
-brew tap PavlovIvan1/macos-app https://github.com/PavlovIvan1/MacOS-app.git
-brew trust pavlovivan1/macos-app   # если Homebrew попросит доверять сторонний tap
-brew install macos-app
+brew tap PavlovIvan1/macos-app https://github.com/PavlovIvan1/MacOS-app.git && brew trust pavlovivan1/macos-app && brew install macos-app
 ```
 
-После установки приложение сразу лежит в `/Applications` и видно в Launchpad/Spotlight — запускается как обычное macOS-приложение, дополнительных шагов не требуется.
+Installs into `/Applications`, shows up in Launchpad/Spotlight. The cask builds the binary from source on your machine instead of downloading a prebuilt one, so Gatekeeper doesn't block it and no notarization is required.
 
-Cask собирает бинарник из исходников прямо на вашей машине (`swift build`) во время установки, а не скачивает готовый файл, поэтому Gatekeeper не блокирует запуск и нотаризация через Apple Developer Program не требуется.
-
-### Из исходников
+## Build from source
 
 ```bash
 git clone git@github.com:PavlovIvan1/MacOS-app.git
@@ -33,13 +25,13 @@ cd MacOS-app
 swift run
 ```
 
-### Готовое `.app`-приложение
+## Build a `.app` bundle
 
 ```bash
 ./build_app.sh
 open HelloWorldApp.app
 ```
 
-## Лицензия
+## License
 
-MIT — см. [LICENSE](LICENSE).
+MIT — see [LICENSE](LICENSE).
