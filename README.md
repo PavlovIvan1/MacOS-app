@@ -15,6 +15,7 @@
 
 ```bash
 brew tap PavlovIvan1/macos-app https://github.com/PavlovIvan1/MacOS-app.git
+brew trust pavlovivan1/macos-app   # если Homebrew попросит доверять сторонний tap
 brew install macos-app
 macos-app
 ```
