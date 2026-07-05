@@ -7,7 +7,7 @@ cask "macos-app" do
   desc "Простое SwiftUI macOS-приложение (Hello, World! / Привет!)"
   homepage "https://github.com/PavlovIvan1/MacOS-app"
 
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   preflight do
     system_command "/usr/bin/swift",
