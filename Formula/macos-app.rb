@@ -2,7 +2,7 @@ class MacosApp < Formula
   desc "Простое SwiftUI macOS-приложение (Hello, World! / Привет!)"
   homepage "https://github.com/PavlovIvan1/MacOS-app"
   url "https://github.com/PavlovIvan1/MacOS-app/archive/refs/tags/v1.1.0.tar.gz"
-  sha256 "PLACEHOLDER_SHA256"
+  sha256 "3f55a87cb04122f7d132786615ed484fc9733dec09b72d1fa506f391ffcb85ee"
   license "MIT"
 
   def install
