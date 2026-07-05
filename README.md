@@ -4,6 +4,8 @@
 
 Собирается полностью через Swift Package Manager — без Xcode-проекта.
 
+![Screenshot](screenshots/screenshot.png)
+
 ## Требования
 
 - macOS 12+
