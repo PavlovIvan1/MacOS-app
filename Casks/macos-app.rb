@@ -1,6 +1,6 @@
 cask "macos-app" do
   version "1.2.0"
-  sha256 "PLACEHOLDER_SHA256"
+  sha256 "88746b04f31ce6d6881cf172c0b2ef35aac192e0f0062cca4368aeac2a92583b"
 
   url "https://github.com/PavlovIvan1/MacOS-app/archive/refs/tags/v#{version}.tar.gz"
   name "HelloWorldApp"
