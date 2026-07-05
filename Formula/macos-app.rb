@@ -43,17 +43,15 @@ class MacosApp < Formula
 
   end
 
-  def post_install
-    system "ln", "-sf", opt_prefix/"HelloWorldApp.app", "/Applications/HelloWorldApp.app"
-  end
-
   def caveats
     <<~EOS
-      HelloWorldApp.app установлен в /Applications (символическая ссылка
-      на #{opt_prefix}/HelloWorldApp.app) и доступен через Launchpad/Spotlight.
+      Homebrew не даёт формулам писать в /Applications напрямую (песочница
+      sandbox-exec), поэтому один раз выполните сами:
 
-      При удалении формулы (`brew uninstall macos-app`) ссылку из
-      /Applications нужно убрать вручную:
+        ln -sf "#{opt_prefix}/HelloWorldApp.app" /Applications/HelloWorldApp.app
+
+      После этого HelloWorldApp появится в Launchpad и Spotlight.
+      Удаление ссылки при удалении формулы:
         rm /Applications/HelloWorldApp.app
     EOS
   end
