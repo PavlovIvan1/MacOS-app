@@ -5,8 +5,6 @@ class MacosApp < Formula
   sha256 "4936b4b661edd1dcc95633bfbb603a2a3def39bd592f9971ddcf9aa1bcf234be"
   license "MIT"
 
-  depends_on xcode: :build
-
   def install
     system "swift", "build", "--disable-sandbox", "-c", "release"
     bin.install ".build/release/HelloWorldApp" => "macos-app"
